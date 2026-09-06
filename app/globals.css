@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Palette: Mediterranean limestone + abyssal pool blues ─────────── */
+  --color-abyss: #05161f;
+  --color-deep: #0a2e3c;
+  --color-petrol: #10475a;
+  --color-mineral: #2e93a6;
+  --color-aqua: #6fd5e0;
+  --color-foam: #dcefef;
+  --color-limestone: #ece7db;
+  --color-ivory: #f6f3eb;
+  --color-shell: #fbfaf5;
+  --color-sand: #c2a97e;
+  --color-ink: #0b1d24;
+  --color-ink-soft: #33505b;
+
+  /* ── Typography ────────────────────────────────────────────────────── */
+  --font-sans: var(--font-archivo), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, serif;
+
+  /* ── Motion tokens ─────────────────────────────────────────────────── */
+  --ease-water: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-surface: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ── Base ──────────────────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background-color: var(--color-mineral);
+  color: var(--color-shell);
+}
+
+/* ── Typographic utilities ─────────────────────────────────────────────── */
+
+.text-display {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+
+.text-label {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.text-serif-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 340;
+  letter-spacing: -0.01em;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Focus ─────────────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--color-mineral);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.on-dark :focus-visible,
+[data-theme="dark"] :focus-visible {
+  outline-color: var(--color-aqua);
+}
+
+/* ── Waterline keyframes (used by dividers / liquid fills) ─────────────── */
+
+@keyframes waterline-drift {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Drifts a two-layer wave mask by exactly one tile for a seamless loop. */
+@keyframes mask-drift {
+  to {
+    -webkit-mask-position:
+      160px 0,
+      0 23px;
+    mask-position:
+      160px 0,
+      0 23px;
+  }
+}
+
+.mask-drift {
+  animation: mask-drift 11s linear infinite;
+}
+
+@keyframes caustic-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-2%, 1.5%, 0) scale(1.04);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
