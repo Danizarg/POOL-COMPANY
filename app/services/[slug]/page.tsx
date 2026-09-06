@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ServicePage from "@/components/services/ServicePage";
+import LeakCutaway from "@/components/services/LeakCutaway";
 import { serviceContent } from "@/lib/service-content";
 import { services, SITE_URL, contact } from "@/lib/site";
 import type { ServiceSlug } from "@/lib/site";
@@ -85,7 +86,10 @@ export default async function Page({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ServicePage content={content} />
+      <ServicePage
+        content={content}
+        extra={content.slug === "leak-detection" ? <LeakCutaway /> : undefined}
+      />
     </>
   );
 }

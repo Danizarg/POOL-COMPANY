@@ -18,7 +18,14 @@ import type { ServiceContent } from "@/lib/service-content";
  * light (limestone) and dark (abyssal) register. Each page keeps the
  * same bones: hero, what's included, method, gallery, FAQ, next chapter.
  */
-export default function ServicePage({ content }: { content: ServiceContent }) {
+export default function ServicePage({
+  content,
+  extra,
+}: {
+  content: ServiceContent;
+  /** optional page-specific signature section, rendered after "what's included" */
+  extra?: React.ReactNode;
+}) {
   const meta = services.find((s) => s.slug === content.slug)!;
   const dark = content.tone === "dark";
 
@@ -138,6 +145,8 @@ export default function ServicePage({ content }: { content: ServiceContent }) {
             </Stagger>
           </div>
         </section>
+
+        {extra}
 
         {/* ── Gallery (when genuine imagery exists) ────────────────── */}
         {content.gallery && (
