@@ -66,12 +66,33 @@ export default function Reviews() {
           <SectionLabel index="07" className="text-ink-soft">
             What clients say
           </SectionLabel>
-          <p className="text-label hidden text-ink-soft sm:block" aria-label="Five star reviews published on Google">
-            ★★★★★ · Published on Google
+          <p
+            className="text-label hidden items-center gap-2.5 text-ink-soft sm:flex"
+            aria-label="Five star reviews published on Google"
+          >
+            <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
+              <path
+                fill="#4285F4"
+                d="M23.5 12.27c0-.85-.08-1.66-.22-2.45H12v4.64h6.45a5.52 5.52 0 0 1-2.39 3.62v3h3.87c2.26-2.09 3.57-5.17 3.57-8.81Z"
+              />
+              <path
+                fill="#34A853"
+                d="M12 24c3.24 0 5.96-1.07 7.93-2.91l-3.87-3c-1.07.72-2.44 1.14-4.06 1.14-3.13 0-5.78-2.11-6.72-4.96H1.29v3.1A12 12 0 0 0 12 24Z"
+              />
+              <path
+                fill="#FBBC05"
+                d="M5.28 14.27a7.21 7.21 0 0 1 0-4.54v-3.1H1.29a12 12 0 0 0 0 10.74l3.99-3.1Z"
+              />
+              <path
+                fill="#EA4335"
+                d="M12 4.77c1.76 0 3.35.6 4.6 1.8l3.44-3.44C17.95 1.19 15.24 0 12 0A12 12 0 0 0 1.29 6.63l3.99 3.1C6.22 6.88 8.87 4.77 12 4.77Z"
+              />
+            </svg>
+            ★★★★★ · Five-star Google reviews
           </p>
         </div>
 
-        <div className="mt-12 min-h-[300px] sm:min-h-[280px] lg:min-h-[320px]">
+        <div className="mt-10 min-h-[240px] sm:min-h-[230px] lg:min-h-[260px]">
           <AnimatePresence mode="wait">
             <motion.blockquote
               key={index}
@@ -80,7 +101,7 @@ export default function Reviews() {
               exit={reduced ? { opacity: 0 } : { opacity: 0, y: -18 }}
               transition={{ duration: 0.6, ease: EASE_WATER }}
             >
-              <p className="text-serif-accent max-w-5xl text-[clamp(1.5rem,3.4vw,3rem)] leading-[1.25] text-ink">
+              <p className="text-serif-accent max-w-5xl text-[clamp(1.5rem,3.2vw,2.8rem)] leading-[1.28] text-ink">
                 “{review.quote}”
               </p>
               <footer className="mt-8 flex items-center gap-4">

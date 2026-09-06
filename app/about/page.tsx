@@ -7,7 +7,8 @@ import SectionLabel from "@/components/ui/SectionLabel";
 import Waterline from "@/components/ui/Waterline";
 import Accordion from "@/components/ui/Accordion";
 import Button from "@/components/ui/Button";
-import { Reveal, SurfaceLines, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { HeroLines, FadeUp } from "@/components/motion/Entrance";
 import { shopUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -71,7 +72,7 @@ export default function AboutPage() {
               About us
             </SectionLabel>
             <div className="mt-8 grid gap-12 lg:grid-cols-[1.6fr_1fr] lg:gap-20">
-              <SurfaceLines
+              <HeroLines
                 as="h1"
                 className="text-display text-[clamp(2.4rem,5.6vw,5.4rem)] text-ink"
                 lines={[
@@ -81,7 +82,7 @@ export default function AboutPage() {
                   </span>,
                 ]}
               />
-              <Reveal delay={0.2} className="max-w-md self-end">
+              <FadeUp delay={0.2} className="max-w-md self-end">
                 <p className="text-[15px] leading-relaxed text-ink-soft sm:text-base">
                   We are Infinity Brand — complete pool specialists on the
                   Costa del Sol. We were born with one very simple idea:
@@ -90,7 +91,7 @@ export default function AboutPage() {
                   across the coast, with a particular presence in Mijas
                   Costa, Marbella and Estepona.
                 </p>
-              </Reveal>
+              </FadeUp>
             </div>
           </div>
           <Waterline className="text-petrol" opacity={0.25} />

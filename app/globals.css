@@ -16,13 +16,16 @@
   --color-ink-soft: #33505b;
   --color-clay: #a4442f;
 
-  /* ── Typography ────────────────────────────────────────────────────── */
-  --font-sans: var(--font-archivo), system-ui, -apple-system, sans-serif;
-  --font-serif: var(--font-fraunces), Georgia, serif;
-
   /* ── Motion tokens ─────────────────────────────────────────────────── */
   --ease-water: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-surface: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Font tokens must be inline: next/font defines the variables on <body>,
+   not :root, so a plain @theme block would resolve them to nothing. */
+@theme inline {
+  --font-sans: var(--font-archivo), system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, serif;
 }
 
 /* ── Base ──────────────────────────────────────────────────────────────── */
@@ -103,6 +106,51 @@ body {
   }
 }
 
+/* ── CSS entrance animations ───────────────────────────────────────────
+   Above-the-fold content animates with CSS so it is visible and moving
+   before hydration; JS-driven reveals are reserved for below the fold. */
+
+@keyframes rise-line {
+  from {
+    transform: translateY(112%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.anim-rise-line {
+  animation: rise-line 0.9s var(--ease-water) both;
+}
+
+.anim-fade-up {
+  animation: fade-up 0.85s var(--ease-water) both;
+}
+
+.anim-fade-in {
+  animation: fade-in 1s ease-out both;
+}
+
 /* Drifts a two-layer wave mask by exactly one tile for a seamless loop. */
 @keyframes mask-drift {
   to {
@@ -124,10 +172,22 @@ body {
     transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    transform: translate3d(-2%, 1.5%, 0) scale(1.04);
+    transform: translate3d(-2.5%, 2%, 0) scale(1.05);
   }
   100% {
     transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes caustic-drift-b {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1.04);
+  }
+  50% {
+    transform: translate3d(2.5%, -1.5%, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1.04);
   }
 }
 

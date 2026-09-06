@@ -1,9 +1,6 @@
-"use client";
-
-import { motion, useReducedMotion } from "motion/react";
 import Button from "@/components/ui/Button";
 import WaterCanvas from "@/components/water/WaterCanvas";
-import { SurfaceLines, EASE_WATER } from "@/components/motion/Reveal";
+import { HeroLines, FadeUp, FadeIn } from "@/components/motion/Entrance";
 import { contact } from "@/lib/site";
 import { WhatsAppIcon } from "@/components/ui/Icons";
 
@@ -14,6 +11,9 @@ import { WhatsAppIcon } from "@/components/ui/Icons";
  * + pointer ripples over genuine pool photography). Its top edge is an
  * undulating, slowly drifting liquid mask — the waterline that the whole
  * site's visual language hangs from. Above it: limestone, air, type.
+ *
+ * Server component: all entrance motion is CSS, so the hero is complete
+ * in the SSR payload and never waits for hydration.
  */
 
 // 120x24 repeating wave tile, filled below the crest.
@@ -33,8 +33,6 @@ const maskStyle: React.CSSProperties = {
 };
 
 export default function Hero() {
-  const reduced = useReducedMotion();
-
   return (
     <section
       className="relative flex min-h-[100svh] flex-col bg-ivory"
@@ -44,36 +42,24 @@ export default function Hero() {
       <div className="mx-auto flex w-full max-w-[1680px] flex-1 flex-col justify-end px-5 pb-8 pt-28 sm:px-8 sm:pb-10 lg:px-12 lg:pt-32">
         <div className="grid items-end gap-8 lg:grid-cols-[1.5fr_1fr] lg:gap-16">
           <div>
-            <motion.p
-              initial={reduced ? false : { opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-label mb-5 text-ink-soft"
-            >
-              Swimming pool company · Costa del Sol
-            </motion.p>
-            <SurfaceLines
+            <FadeIn delay={0.1}>
+              <p className="text-label mb-5 text-ink-soft">
+                Swimming pool company · Costa del Sol
+              </p>
+            </FadeIn>
+            <HeroLines
               as="h1"
               className="text-display text-[clamp(2.9rem,8.2vw,8rem)] text-ink"
               lines={[
                 <span key="l1">Your pool.</span>,
-                <span key="l2">
-                  <span className="text-serif-accent text-petrol">
-                    Perfect, all&nbsp;year.
-                  </span>
+                <span key="l2" className="text-serif-accent text-petrol">
+                  Perfect, all&nbsp;year.
                 </span>,
               ]}
-              delay={0.15}
-              once
             />
           </div>
 
-          <motion.div
-            initial={reduced ? false : { opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.55, ease: EASE_WATER }}
-            className="max-w-md lg:justify-self-end lg:pb-3"
-          >
+          <FadeUp delay={0.55} className="max-w-md lg:justify-self-end lg:pb-3">
             <p className="text-[15px] leading-relaxed text-ink-soft sm:text-base">
               Maintenance, technical service, construction and renovation —
               one specialist team for private pools, villas and communities
@@ -94,18 +80,12 @@ export default function Hero() {
                 </span>
               </Button>
             </div>
-          </motion.div>
+          </FadeUp>
         </div>
       </div>
 
       {/* ── Water: the live surface ───────────────────────────────────── */}
-      <motion.div
-        initial={reduced ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, delay: 0.35 }}
-        className="mask-drift relative"
-        style={maskStyle}
-      >
+      <div className="anim-fade-in mask-drift relative" style={{ ...maskStyle, animationDelay: "0.3s" }}>
         {/* Desktop water */}
         <WaterCanvas
           src="/images/hero-pool.jpg"
@@ -132,22 +112,15 @@ export default function Hero() {
         />
 
         {/* location marker riding the waterline */}
-        <motion.div
-          initial={reduced ? false : { opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.9, ease: EASE_WATER }}
-          className="absolute left-5 top-6 sm:left-8 lg:left-12"
-        >
+        <FadeUp delay={0.9} className="absolute left-5 top-6 sm:left-8 lg:left-12">
           <p className="text-label bg-abyss/60 px-4 py-2.5 text-ivory backdrop-blur-sm">
             Marbella · Mijas Costa · Costa del Sol
           </p>
-        </motion.div>
+        </FadeUp>
 
         {/* service breadth strip, bottom of the water */}
-        <motion.div
-          initial={reduced ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.15 }}
+        <FadeIn
+          delay={1.1}
           className="absolute inset-x-0 bottom-0 hidden bg-gradient-to-t from-abyss/55 to-transparent pb-5 pt-14 sm:block"
         >
           <p className="text-label mx-auto flex max-w-[1680px] flex-wrap gap-x-6 gap-y-2 px-8 text-ivory/85 lg:px-12">
@@ -161,8 +134,8 @@ export default function Hero() {
             <span className="opacity-40">/</span>
             <span>Pool covers</span>
           </p>
-        </motion.div>
-      </motion.div>
+        </FadeIn>
+      </div>
     </section>
   );
 }

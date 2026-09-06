@@ -8,7 +8,8 @@ import Waterline from "@/components/ui/Waterline";
 import Accordion from "@/components/ui/Accordion";
 import CausticField from "@/components/water/CausticField";
 import NextService from "@/components/services/NextService";
-import { Reveal, SurfaceLines, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { HeroLines, FadeUp } from "@/components/motion/Entrance";
 import { WhatsAppIcon } from "@/components/ui/Icons";
 import { contact, services } from "@/lib/site";
 import type { ServiceContent } from "@/lib/service-content";
@@ -44,7 +45,7 @@ export default function ServicePage({
               <SectionLabel index={meta.index} tone={dark ? "light" : "dark"}>
                 {meta.title}
               </SectionLabel>
-              <SurfaceLines
+              <HeroLines
                 as="h1"
                 className="text-display mt-8 text-[clamp(2.3rem,5.2vw,4.9rem)]"
                 lines={[
@@ -68,7 +69,7 @@ export default function ServicePage({
                   </span>,
                 ]}
               />
-              <Reveal delay={0.3} className="mt-8 max-w-xl">
+              <FadeUp delay={0.3} className="mt-8 max-w-xl">
                 <p className={`text-[15px] leading-relaxed sm:text-base ${dark ? "text-ivory/65" : "text-ink-soft"}`}>
                   {content.intro}
                 </p>
@@ -87,10 +88,10 @@ export default function ServicePage({
                     </span>
                   </Button>
                 </div>
-              </Reveal>
+              </FadeUp>
             </div>
 
-            <Reveal delay={0.2} className="lg:justify-self-end">
+            <FadeUp delay={0.2} className="lg:justify-self-end">
               <figure className="w-full lg:w-[min(30vw,460px)]">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[2px]">
                   <Image
@@ -108,7 +109,7 @@ export default function ServicePage({
                   {content.heroImageAlt}
                 </figcaption>
               </figure>
-            </Reveal>
+            </FadeUp>
           </div>
           <Waterline className={dark ? "text-aqua" : "text-petrol"} opacity={0.3} />
         </section>

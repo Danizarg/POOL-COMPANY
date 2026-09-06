@@ -37,8 +37,11 @@ uniform float uShimmer;
 uniform vec3 uRipples[${MAX_RIPPLES}];   // x, y, startTime (-1 = unused)
 
 // ── value noise ────────────────────────────────────────────────────────
+// sin-free hash: numerically stable on low-precision / software GL
 float hash(vec2 p) {
-  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+  vec2 q = fract(p * vec2(123.34, 456.21));
+  q += dot(q, q + 45.32);
+  return fract(q.x * q.y);
 }
 float noise(vec2 p) {
   vec2 i = floor(p);

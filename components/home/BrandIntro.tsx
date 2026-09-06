@@ -62,13 +62,14 @@ export default function BrandIntro() {
         <div className="mt-16 grid grid-cols-2 gap-4 sm:gap-6 lg:mt-24 lg:grid-cols-[1.5fr_1fr] lg:gap-10">
           <Reveal>
             <figure>
-              <div className="relative aspect-[16/10] overflow-hidden rounded-[2px]">
+              <div className="relative aspect-[16/10] overflow-hidden rounded-[2px] lg:aspect-[21/10]">
                 <Image
                   src="/images/work/maintenance-2.jpg"
                   alt="Marbella Pool Service technician maintaining a pool on the Costa del Sol"
                   fill
                   sizes="(min-width: 1024px) 55vw, 50vw"
                   className="object-cover"
+                  style={{ objectPosition: "50% 62%" }}
                 />
               </div>
               <figcaption className="text-label mt-3 text-ink-soft">
@@ -85,6 +86,7 @@ export default function BrandIntro() {
                   fill
                   sizes="(min-width: 1024px) 32vw, 50vw"
                   className="object-cover"
+                  style={{ objectPosition: "50% 38%" }}
                 />
               </div>
               <figcaption className="text-label mt-3 text-ink-soft">

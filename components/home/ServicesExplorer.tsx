@@ -63,12 +63,12 @@ export default function ServicesExplorer() {
   return (
     <section id="services" aria-label="Our services">
       {/* ── Desktop: sticky descent ─────────────────────────────────── */}
-      <div ref={ref} className="relative hidden lg:block" style={{ height: `${services.length * 85}vh` }}>
+      <div ref={ref} className="relative hidden lg:block" style={{ height: `${services.length * 70}vh` }}>
         <motion.div
           style={{ backgroundColor: reduced ? "#0a2e3c" : bg, color: reduced ? "#f6f3eb" : fg }}
           className="sticky top-0 flex h-screen flex-col overflow-hidden"
         >
-          <div className="mx-auto grid w-full max-w-[1680px] flex-1 grid-cols-[1.05fr_1fr_44px] items-center gap-12 px-12">
+          <div className="mx-auto grid w-full max-w-[1680px] flex-1 grid-cols-[1fr_1.3fr_44px] items-center gap-14 px-12">
             {/* Index list */}
             <div>
               <motion.div style={{ color: reduced ? undefined : fgSoft }}>
@@ -156,7 +156,7 @@ export default function ServicesExplorer() {
 
             {/* Depth gauge */}
             <div className="flex h-[72vh] max-h-[760px] flex-col items-center" aria-hidden="true">
-              <span className="text-label rotate-180 text-[9px] opacity-50 [writing-mode:vertical-rl]">
+              <span className="text-label rotate-180 text-[10px] opacity-60 [writing-mode:vertical-rl]">
                 Depth
               </span>
               <div className="relative mt-4 w-px flex-1 bg-current opacity-20" />
@@ -166,7 +166,7 @@ export default function ServicesExplorer() {
                   style={{ height: reduced ? "100%" : gaugeFill }}
                 />
               </div>
-              <span className="tabular mt-4 text-[11px] opacity-70">
+              <span className="tabular mt-4 text-[12px] opacity-90">
                 −{DEPTHS[active]} m
               </span>
             </div>

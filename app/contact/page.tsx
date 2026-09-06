@@ -5,7 +5,7 @@ import SectionLabel from "@/components/ui/SectionLabel";
 import Waterline from "@/components/ui/Waterline";
 import ContactForm from "@/components/contact/ContactForm";
 import WaterCanvas from "@/components/water/WaterCanvas";
-import { Reveal, SurfaceLines } from "@/components/motion/Reveal";
+import { HeroLines, FadeUp } from "@/components/motion/Entrance";
 import { contact } from "@/lib/site";
 import { PhoneIcon, WhatsAppIcon } from "@/components/ui/Icons";
 
@@ -24,7 +24,7 @@ export default function ContactPage() {
         <section className="bg-ivory" aria-label="Contact Marbella Pool Service">
           <div className="mx-auto max-w-[1680px] px-5 pb-20 pt-28 sm:px-8 lg:px-12 lg:pb-28 lg:pt-40">
             <SectionLabel className="text-ink-soft">Contact</SectionLabel>
-            <SurfaceLines
+            <HeroLines
               as="h1"
               className="text-display mt-8 max-w-4xl text-[clamp(2.4rem,5.6vw,5.2rem)] text-ink"
               lines={[
@@ -37,7 +37,7 @@ export default function ContactPage() {
 
             <div className="mt-14 grid gap-14 lg:grid-cols-[1fr_1.4fr] lg:gap-24">
               {/* Direct contact */}
-              <Reveal>
+              <FadeUp>
                 <div className="space-y-9">
                   <div>
                     <h2 className="text-label text-ink-soft">Direct contact</h2>
@@ -102,15 +102,15 @@ export default function ContactPage() {
                     </p>
                   </div>
                 </div>
-              </Reveal>
+              </FadeUp>
 
               {/* Form */}
-              <Reveal delay={0.15}>
+              <FadeUp delay={0.15}>
                 <h2 className="text-label mb-6 text-ink-soft">
                   Request information — no obligation
                 </h2>
                 <ContactForm />
-              </Reveal>
+              </FadeUp>
             </div>
           </div>
           <Waterline className="text-petrol" opacity={0.25} />

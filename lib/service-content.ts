@@ -216,7 +216,7 @@ export const serviceContent: Record<ServiceSlug, ServiceContent> = {
     slug: "construction-renovation",
     tone: "light",
     heroLines: ["Renovation that revalues", "your entire space."],
-    accent: 0,
+    accent: 1,
     heroImage: "/images/services/renovation.webp",
     heroImageAlt: "Completed pool renovation with new blue gresite mosaic on the Costa del Sol",
     metaTitle: "Pool Construction & Renovation in Marbella & Mijas Costa",
@@ -291,9 +291,9 @@ export const serviceContent: Record<ServiceSlug, ServiceContent> = {
     ],
     gallery: [
       {
-        src: "/images/services/renovation.webp",
-        alt: "Renovated pool with new blue mosaic and spa",
-        caption: "Full mosaic renovation · client project",
+        src: "/images/work/regrouting-2.jpg",
+        alt: "Freshly regrouted light-blue gresite with skimmer detail",
+        caption: "Regrouted gresite · skimmer detail",
       },
       {
         src: "/images/work/regrouting-client.jpg",
@@ -379,7 +379,7 @@ export const serviceContent: Record<ServiceSlug, ServiceContent> = {
     slug: "pool-covers",
     tone: "light",
     heroLines: ["A longer season.", "A safer, cleaner pool."],
-    accent: 0,
+    accent: 1,
     heroImage: "/images/covers/drone.jpg",
     heroImageAlt: "Aerial view of a pool with an automatic slatted cover partially deployed",
     metaTitle: "Pool Covers on the Costa del Sol — Manual, Automatic & Submerged",
