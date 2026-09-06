@@ -113,8 +113,8 @@ export default function Hero() {
 
         {/* location marker riding the waterline */}
         <FadeUp delay={0.9} className="absolute left-5 top-6 sm:left-8 lg:left-12">
-          <p className="text-label bg-abyss/60 px-4 py-2.5 text-ivory backdrop-blur-sm">
-            Marbella · Mijas Costa · Costa del Sol
+          <p className="text-label whitespace-nowrap bg-abyss/60 px-4 py-2.5 text-ivory backdrop-blur-sm">
+            Marbella · Mijas Costa<span className="hidden sm:inline"> · Costa del Sol</span>
           </p>
         </FadeUp>
 
