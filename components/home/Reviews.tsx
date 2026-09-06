@@ -32,6 +32,7 @@ const ROTATE_MS = 8000;
 
 export default function Reviews() {
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
   const reduced = useReducedMotion();
 
@@ -42,17 +43,24 @@ export default function Reviews() {
   );
 
   useEffect(() => {
-    if (reduced) return;
+    if (reduced || paused) return;
     timer.current = setInterval(next, ROTATE_MS);
     return () => {
       if (timer.current) clearInterval(timer.current);
     };
-  }, [next, index, reduced]);
+  }, [next, index, reduced, paused]);
 
   const review = REVIEWS[index];
 
   return (
-    <section className="bg-ivory" aria-label="Client reviews">
+    <section
+      className="bg-ivory"
+      aria-label="Client reviews"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
+    >
       <div className="mx-auto max-w-[1680px] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
         <div className="flex items-baseline justify-between">
           <SectionLabel index="07" className="text-ink-soft">

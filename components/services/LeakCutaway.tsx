@@ -131,7 +131,7 @@ export default function LeakCutaway() {
               <rect x="640" y="240" width="120" height="100" fill="none" stroke="#f6f3eb" strokeOpacity="0.6" strokeWidth="1.5" />
               <circle cx="700" cy="300" r="17" fill="none" stroke="#6fd5e0" strokeOpacity="0.8" strokeWidth="1.5" />
               <path d="M693 300 h 14 M 700 293 v 14" stroke="#6fd5e0" strokeOpacity="0.8" strokeWidth="1.5" />
-              <text x="700" y="230" textAnchor="middle" fill="#f6f3eb" fillOpacity="0.5" fontSize="11" letterSpacing="2">
+              <text x="700" y="228" textAnchor="middle" fill="#f6f3eb" fillOpacity="0.6" fontSize="12.5" letterSpacing="2">
                 PLANT ROOM
               </text>
               {/* ground hatching */}
@@ -149,7 +149,20 @@ export default function LeakCutaway() {
               {POINTS.map((p, i) => {
                 const isActive = i === active;
                 return (
-                  <g key={p.id} className="cursor-pointer" onClick={() => pick(i)}>
+                  <g
+                    key={p.id}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`${p.title} — ${p.note}`}
+                    className="cursor-pointer focus:outline-none [&:focus-visible_circle]:stroke-2"
+                    onClick={() => pick(i)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        pick(i);
+                      }
+                    }}
+                  >
                     {isActive && !reduced && (
                       <motion.circle
                         cx={p.x}
@@ -165,16 +178,16 @@ export default function LeakCutaway() {
                     <circle
                       cx={p.x}
                       cy={p.y}
-                      r={isActive ? 9 : 7}
+                      r={isActive ? 11 : 9}
                       fill={isActive ? "#6fd5e0" : "#05161f"}
                       stroke="#6fd5e0"
                       strokeWidth="1.5"
                     />
                     <text
                       x={p.x}
-                      y={p.y + 3.5}
+                      y={p.y + 4}
                       textAnchor="middle"
-                      fontSize="9"
+                      fontSize="11.5"
                       fontWeight="600"
                       fill={isActive ? "#05161f" : "#6fd5e0"}
                     >
@@ -202,7 +215,7 @@ export default function LeakCutaway() {
                   }`}
                 >
                   <span className="flex items-baseline gap-4">
-                    <span className={`tabular text-[11px] ${isActive ? "text-aqua" : "text-ivory/40"}`}>
+                    <span className={`tabular text-[11px] ${isActive ? "text-aqua" : "text-ivory/60"}`}>
                       {p.n}
                     </span>
                     <span className={`text-display text-lg ${isActive ? "text-ivory" : "text-ivory/55"}`}>

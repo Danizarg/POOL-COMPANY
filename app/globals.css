@@ -14,6 +14,7 @@
   --color-sand: #c2a97e;
   --color-ink: #0b1d24;
   --color-ink-soft: #33505b;
+  --color-clay: #a4442f;
 
   /* ── Typography ────────────────────────────────────────────────────── */
   --font-sans: var(--font-archivo), system-ui, -apple-system, sans-serif;

@@ -103,8 +103,20 @@ export default function ContactForm() {
     );
   }
 
+  // Clear a field's error as soon as the visitor edits it.
+  const clearError = (e: React.FormEvent<HTMLFormElement>) => {
+    const name = (e.target as HTMLInputElement).name;
+    if (name && errors[name]) {
+      setErrors((prev) => {
+        const next = { ...prev };
+        delete next[name];
+        return next;
+      });
+    }
+  };
+
   return (
-    <form onSubmit={onSubmit} noValidate aria-label="Request a quote">
+    <form onSubmit={onSubmit} onChange={clearError} noValidate aria-label="Request a quote">
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="cf-name" className="text-label mb-2 block text-ink">
@@ -121,7 +133,7 @@ export default function ContactForm() {
             aria-describedby={errors.name ? "cf-name-err" : undefined}
           />
           {errors.name && (
-            <p id="cf-name-err" className="mt-1.5 text-[12.5px] text-[#a4442f]">
+            <p id="cf-name-err" className="mt-1.5 text-[12.5px] text-clay">
               {errors.name}
             </p>
           )}
@@ -141,7 +153,7 @@ export default function ContactForm() {
             aria-describedby={errors.phone ? "cf-phone-err" : undefined}
           />
           {errors.phone && (
-            <p id="cf-phone-err" className="mt-1.5 text-[12.5px] text-[#a4442f]">
+            <p id="cf-phone-err" className="mt-1.5 text-[12.5px] text-clay">
               {errors.phone}
             </p>
           )}
@@ -161,7 +173,7 @@ export default function ContactForm() {
             aria-describedby={errors.email ? "cf-email-err" : undefined}
           />
           {errors.email && (
-            <p id="cf-email-err" className="mt-1.5 text-[12.5px] text-[#a4442f]">
+            <p id="cf-email-err" className="mt-1.5 text-[12.5px] text-clay">
               {errors.email}
             </p>
           )}
@@ -181,7 +193,7 @@ export default function ContactForm() {
             aria-describedby={errors.city ? "cf-city-err" : undefined}
           />
           {errors.city && (
-            <p id="cf-city-err" className="mt-1.5 text-[12.5px] text-[#a4442f]">
+            <p id="cf-city-err" className="mt-1.5 text-[12.5px] text-clay">
               {errors.city}
             </p>
           )}
@@ -217,7 +229,7 @@ export default function ContactForm() {
           aria-describedby={errors.message ? "cf-message-err" : undefined}
         />
         {errors.message && (
-          <p id="cf-message-err" className="mt-1.5 text-[12.5px] text-[#a4442f]">
+          <p id="cf-message-err" className="mt-1.5 text-[12.5px] text-clay">
             {errors.message}
           </p>
         )}
@@ -228,7 +240,7 @@ export default function ContactForm() {
           id="cf-privacy"
           name="privacy"
           type="checkbox"
-          className="mt-1 h-4 w-4 accent-[#10475a]"
+          className="mt-1 h-4 w-4 accent-petrol"
           aria-invalid={!!errors.privacy}
           aria-describedby={errors.privacy ? "cf-privacy-err" : undefined}
         />
@@ -241,13 +253,13 @@ export default function ContactForm() {
         </label>
       </div>
       {errors.privacy && (
-        <p id="cf-privacy-err" className="mt-1.5 text-[12.5px] text-[#a4442f]">
+        <p id="cf-privacy-err" className="mt-1.5 text-[12.5px] text-clay">
           {errors.privacy}
         </p>
       )}
 
       {status === "error" && (
-        <div className="mt-5 rounded-[2px] border border-[#a4442f]/40 bg-[#a4442f]/8 p-4" role="alert">
+        <div className="mt-5 rounded-[2px] border border-clay/40 bg-clay/8 p-4" role="alert">
           <p className="text-[14px] text-ink">
             Something went wrong sending your message. Please try again — or
             reach us directly on{" "}
