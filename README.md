@@ -23,8 +23,15 @@ recurring waterline motif in masks, buttons and dividers.
 npm install
 npm run dev        # http://localhost:3600
 npm run build      # production build
-npm run lint
 npm run typecheck
+```
+
+Lint tooling and the image-prep dependency are kept out of the install so
+deploys stay warning-free; add them on demand:
+
+```bash
+npm i -D eslint@9 eslint-config-next@15 @eslint/eslintrc   # then: npx eslint .
+npm i -D sharp                                             # for scripts/prep-images.mjs
 ```
 
 ## Where things live
